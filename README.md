@@ -1,2 +1,6 @@
 # TeleCar
-TeleCar application to organize your trips
+TeleCar applikáció munkahelyi kirándulásokhoz, vagy máshoz
+
+https://fejlesztolany.hu/otletek/
+
+
