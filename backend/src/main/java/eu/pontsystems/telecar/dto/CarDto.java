@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CarDto {
 	
-	private String driverName;
 	private int maxPlaces;
 	private List<RouteDto> routes;
 	private String routeDescription;
+	private boolean isElectric;
 	
 }

@@ -31,6 +31,8 @@ public class Car {
     @OneToMany(mappedBy = "cars")
     private List<Person> passengers = new ArrayList<Person>();
     
+    private boolean isElectric = false;
+    
     @ManyToOne
     @JoinColumn(name = "DRIVER", foreignKey = @ForeignKey(name = "FK_CAR_PERSON"), nullable = false)
     private Person driver;
