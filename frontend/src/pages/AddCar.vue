@@ -1,5 +1,6 @@
 <template>
-  <b-row class="outer-box col-md-8" align-h="center">
+  <!-- <div class="outer-box col-md-8" align-h="center"> -->
+  <b-container>
     <b-row class="car-information">
       <b-col class="text-right" cols="4">
         <label for="free-places">Szabad helyek száma</label>
@@ -16,7 +17,7 @@
       <b-col cols="4" class="text-right">
         <label for="stops">Állomások</label>
       </b-col>
-      <b-col cols="6" class="justify-content-center">
+      <b-col cols="6">
         <b-col>
         </b-col>
           <b-row id="stops" v-for="(station, index) in stations" :key="index">
@@ -34,7 +35,7 @@
     <b-row align-h="end">
       <b-button @click="save" variant="info">Mentés</b-button>
     </b-row>
-  </b-row>
+  </b-container>
 </template>
 
 <script>
