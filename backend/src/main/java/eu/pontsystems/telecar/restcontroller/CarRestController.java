@@ -15,6 +15,7 @@ public class CarRestController {
 	@PostMapping("/{id}/add")
 	public void add(@PathVariable("id") Long driverId, @RequestBody CarDto carDto) {
 		System.out.println(driverId);
+		System.out.println(carDto);
 	}
 	
 	
