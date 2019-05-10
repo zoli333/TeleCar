@@ -22,7 +22,7 @@
     </b-row>
     <b-row class="route-information" align-h="center">
       <label for="stops">Állomások</label>
-      <b-col>
+      <b-col class="route-information-column">
         <b-row id="stops" v-for="(station, index) in stations" :key="index">
           <b-col>
             <b-form-input v-model="station.value"></b-form-input>
@@ -99,6 +99,10 @@ export default {
   width: 100%;
   margin: 0 auto;
 }
+.form-control {
+  font-size: 20px;
+}
+
 .car-information {
   padding-top: 20px;
 }
@@ -111,12 +115,16 @@ export default {
 #is-electric-car {
   padding-left: 20px;
 }
-.form-control {
-  font-size: 20px;
-}
 #route-description {
   padding-left: 10;
   line-height: normal;
   min-height: 150px;
+}
+.route-information-column {
+  padding-left: 35px;
+  padding-right: 0;
+}
+label {
+  margin-bottom: 0;
 }
 </style>
