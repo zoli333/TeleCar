@@ -1,41 +1,42 @@
 <template>
-  <!-- <div class="outer-box col-md-8" align-h="center"> -->
-  <b-container>
+  <div class="outer-box col-md-5" align-h="center">
     <b-row class="car-information">
-      <b-col class="text-right" cols="4">
+      <b-col class="col-md-4 p-0">
         <label for="free-places">Szabad helyek száma</label>
-        <label for="is-electric-car">Elektromos autó?</label>
-        <label for="route-description">Útvonal leírása</label>
       </b-col>
-      <b-col cols="6">
+      <b-col class="col-md-8 pr-0">
         <b-form-input v-model="maxPlaces" type="number" id="free-places"></b-form-input>
-        <b-form-radio-group id="is-electric-car" v-model="isElectric" :options="options"></b-form-radio-group>
-        <b-form-textarea id="route-description" v-model="description" rows=3 max-rows=6 type="text"/>
       </b-col>
     </b-row>
-    <b-row class="route-information">
-      <b-col cols="4" class="text-right">
-        <label for="stops">Állomások</label>
+    <b-row class="car-information">
+      <b-col class="col-md-4 p-0">
+        <label for="is-electric-car">Elektromos autó</label>
       </b-col>
-      <b-col cols="6">
-        <b-col>
-        </b-col>
-          <b-row id="stops" v-for="(station, index) in stations" :key="index">
-            <b-col>
-              <b-form-input v-model="station.value"></b-form-input>
-              <span v-if="index !== stations.length - 1"> - </span>
-            </b-col>
-          </b-row>
-          <b-row>
+      <b-col class="col-md-8 pr-0">
+        <b-form-radio-group id="is-electric-car" v-model="isElectric" :options="options"></b-form-radio-group>
+      </b-col>
+    </b-row>
+    <b-row class="car-information">
+      <label for="route-description">Útvonal leírása</label>
+      <b-form-textarea id="route-description" v-model="description" rows=3 max-rows=6 type="text"/>
+    </b-row>
+    <b-row class="route-information" align-h="center">
+      <label for="stops">Állomások</label>
+      <b-col>
+        <b-row id="stops" v-for="(station, index) in stations" :key="index">
+          <b-col>
+            <b-form-input v-model="station.value"></b-form-input>
+            <span v-if="index !== stations.length - 1"> - </span>
+          </b-col>
         </b-row>
-        <b-button @click="addNewStation"><i class="fa fa-plus"></i></b-button>
-        <b-button @click="resetToDefault"><i class="fa fa-times"></i></b-button>
+        <b-button @click="addNewStation" variant="info"><i class="fa fa-plus"></i></b-button>
+        <b-button @click="resetToDefault" variant="info"><i class="fa fa-times"></i></b-button>
       </b-col>
     </b-row>
     <b-row align-h="end">
       <b-button @click="save" variant="info">Mentés</b-button>
     </b-row>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -106,5 +107,16 @@ export default {
 }
 .route-information {
   padding-top: 40px;
+}
+#is-electric-car {
+  padding-left: 20px;
+}
+.form-control {
+  font-size: 20px;
+}
+#route-description {
+  padding-left: 10;
+  line-height: normal;
+  min-height: 150px;
 }
 </style>
