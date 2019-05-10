@@ -5,7 +5,7 @@
         <label for="free-places">Szabad helyek száma</label>
       </b-col>
       <b-col class="col-md-8 pr-0">
-        <b-form-input v-model="maxPlaces" type="number" id="free-places"></b-form-input>
+        <b-form-input v-model="maxPlaces" @change="validateMaxPlaces" type="number" id="free-places"></b-form-input>
       </b-col>
     </b-row>
     <b-row class="car-information">
@@ -55,6 +55,9 @@ export default {
     }
   },
   methods: {
+    validateMaxPlaces: function () {
+      if (this.maxPlaces < 1) this.maxPlaces
+    },
     resetToDefault: function () {
       this.stations = []
       this.addNewStation()
