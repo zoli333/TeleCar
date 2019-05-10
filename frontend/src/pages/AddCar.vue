@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     validateMaxPlaces: function () {
-      if (this.maxPlaces < 1) this.maxPlaces
+      if (this.maxPlaces < 1) this.maxPlaces = 1
     },
     resetToDefault: function () {
       this.stations = []
