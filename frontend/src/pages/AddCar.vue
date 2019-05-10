@@ -66,7 +66,7 @@ export default {
         this.axios.post('/cars/' + this.$store.getters.user.id + '/add', {
           driverId: this.$store.getters.user.id,
           maxPlaces: this.maxPlaces,
-          routes: this.stations,
+          routes: this.stations.map(function (x) { return x.value }),
           routeDescription: this.description,
           isElectric: this.isElectric
         })
