@@ -1,8 +1,8 @@
 # TeleCar
-TeleCar applikáció munkahelyi kirándulásokhoz.
+TeleKocsi applikáció munkahelyi kirándulásokhoz.
 
 Ez és további ötletek találhatók: https://fejlesztolany.hu/otletek/ weboldalán
-Az oldal magyar nyelvű
+(az oldal magyar nyelvű)
 
 # Futtatás
 A backend könyvtárból
