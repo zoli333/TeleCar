@@ -14,8 +14,4 @@ Ha a backend fut akkor a következő parancs futtatása szükséges a frontend k
    
 cors bővítmény lehet hogy szükséges az alkalmazáshoz
 
-Az alkalmazás ezután elérhető a böngészőből a 
-
-   http://localhost:8080
-   
-url címen
+Az alkalmazás ezután elérhető a böngészőből a http://localhost:8080 url címen
