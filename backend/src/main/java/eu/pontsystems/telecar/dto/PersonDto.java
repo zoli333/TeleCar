@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RouteDto {
-	
-	private String name;
+public class PersonDto {
+
+	private String fullName;
+	private String username;
 	
 }

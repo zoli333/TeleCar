@@ -1,11 +1,19 @@
 <template>
-  <main class="wrapper">
-    The list of Cars in card deck
-  </main>
+  <div>
+    <car-table ref="cartable"></car-table>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: 'Cars'
+import CarTable from '@/components/tables/CarTable.vue'
+
+export default {
+  name: 'Cars',
+  components: {
+    CarTable
+  },
+  mounted () {
+    this.$refs.cartable.getCars()
   }
+}
 </script>

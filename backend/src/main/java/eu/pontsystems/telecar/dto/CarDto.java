@@ -2,19 +2,17 @@ package eu.pontsystems.telecar.dto;
 
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class CarDto {
 	
 	private Long driverId;
 	private int maxPlaces;
+	private List<PersonDto> passengers;
 	private List<RouteDto> routes;
-	private String routeDescription;
 	private boolean isElectric;
+	private PersonDto driver;
+	private String routeDescription;
 	
 }

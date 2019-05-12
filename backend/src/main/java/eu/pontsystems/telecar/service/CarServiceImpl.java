@@ -1,5 +1,6 @@
 package eu.pontsystems.telecar.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ import eu.pontsystems.telecar.dto.RouteDto;
 import eu.pontsystems.telecar.entity.Car;
 import eu.pontsystems.telecar.entity.Person;
 import eu.pontsystems.telecar.entity.Route;
+import eu.pontsystems.telecar.mapper.CarMapper;
 import eu.pontsystems.telecar.repository.CarRepository;
 
 @Service
@@ -26,6 +28,9 @@ public class CarServiceImpl implements CarService{
 	
 	@Autowired
 	private RouteService routeService;
+	
+	@Autowired
+	private CarMapper carMapper;
 	
 	@Override
 	public void add(Long driverId, CarDto carDto) {
@@ -43,12 +48,16 @@ public class CarServiceImpl implements CarService{
 	
 	private void addRoutes(CarDto carDto, Car car) {
 		for (RouteDto r : carDto.getRoutes()) {
-			Route route = routeService.findByName(r.getRoute());
+			Route route = routeService.findByName(r.getName());
 			if (route == null) {
 				route = new Route();
-				route.setName(r.getRoute());		
+				route.setName(r.getName());		
 			}
 			car.getRoutes().add(route);
 		}
+	}
+	
+	public List<Car> findAll() {
+		return carRepository.findAll();
 	}
 }
