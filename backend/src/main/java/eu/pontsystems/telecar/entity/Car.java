@@ -1,9 +1,11 @@
 package eu.pontsystems.telecar.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,4 +53,16 @@ public class Car {
     private Person driver;
     
     private String routeDescription;
+    
+    @JsonFormat(pattern = "yyyy. MM. dd.")
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    @Column(nullable = false)
+    private Date departureDate;
+    
+    @JsonFormat(pattern = "HH:mm")
+    @Temporal(TemporalType.TIME)
+    @NotNull
+    @Column(nullable = false)
+    private Date departureTime;
 }

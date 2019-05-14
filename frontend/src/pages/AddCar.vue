@@ -10,6 +10,22 @@
     </b-row>
     <b-row class="car-information">
       <b-col class="col-md-4 p-0">
+        <label for="departure-date">Indulás dátuma</label>
+      </b-col>
+      <b-col class="col-md-8 pr-0">
+        <date-picker id="departure-date" class="datetimepicker" v-model="departureDate" :config="datePickerOptions"></date-picker>
+      </b-col>
+    </b-row>
+    <b-row class="car-information">
+      <b-col class="col-md-4 p-0">
+        <label for="departure-time">Indulás időpontja</label>
+      </b-col>
+      <b-col class="col-md-8 pr-0">
+        <b-form-input type="time" v-model="departureTime"></b-form-input>
+      </b-col>
+    </b-row>
+    <b-row class="car-information">
+      <b-col class="col-md-4 p-0">
         <label for="is-electric-car">Elektromos autó</label>
       </b-col>
       <b-col class="col-md-8 pr-0">
@@ -51,7 +67,18 @@ export default {
         {text: 'Igen', value: true},
         {text: 'Nem', value: false}
       ],
-      description: null
+      description: null,
+      departureDate: null,
+      departureTime: null
+    }
+  },
+  computed: {
+    datePickerOptions: function () {
+      return {
+        format: 'YYYY. MM. DD.',
+        showClear: true,
+        showClose: true
+      }
     }
   },
   methods: {
@@ -72,7 +99,9 @@ export default {
           maxPlaces: this.maxPlaces,
           routes: this.stations.map(function (x) { return x.value }),
           routeDescription: this.description,
-          isElectric: this.isElectric
+          isElectric: this.isElectric,
+          departureDate: this.departureDate,
+          departureTime: this.departureTime
         })
           .then(function (response){
             console.log(response)

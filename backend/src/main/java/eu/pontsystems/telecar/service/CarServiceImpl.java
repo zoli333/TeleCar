@@ -40,6 +40,8 @@ public class CarServiceImpl implements CarService{
 		car.setMaxPlaces(carDto.getMaxPlaces());
 		car.setRouteDescription(carDto.getRouteDescription());
 		car.setDriver(driver.get());
+		car.setDepartureDate(carDto.getDepartureDate());
+		car.setDepartureTime(carDto.getDepartureTime());
 		addRoutes(carDto, car);
 		
 		driver.get().getCars().add(car);
