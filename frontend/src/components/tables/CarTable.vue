@@ -5,8 +5,7 @@
     <b-card-group deck>
       <b-card class="col-md-3 text-center" v-for="(car, index) in cars" :key="index">
         <b-card-text class="driver-text"><b>{{car.driver.fullName + ' útja'}}</b></b-card-text>
-        {{ moment("11:00").format('HH:mm') }}
-        <b-card-text class="departure-time-text">{{car.departureDate + ' ' + moment.utc(car.departureTime).format('HH:mm') }}</b-card-text>
+        <b-card-text class="departure-time-text">{{car.departureDateTime }}</b-card-text>
         <b-card-text class="route-text">{{formatRoutes(car.routes)}}</b-card-text>
         <b-card-body>
           <div v-for="placeIndex in car.maxPlaces" :key="placeIndex">

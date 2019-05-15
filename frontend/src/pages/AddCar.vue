@@ -100,8 +100,7 @@ export default {
           routes: this.stations.map(function (x) { return x.value }),
           routeDescription: this.description,
           isElectric: this.isElectric,
-          departureDate: this.departureDate,
-          departureTime: this.departureTime
+          departureDateTime: this.departureDate + ' ' + this.departureTime
         })
           .then(function (response){
             console.log(response)

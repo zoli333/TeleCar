@@ -54,15 +54,9 @@ public class Car {
     
     private String routeDescription;
     
-    @JsonFormat(pattern = "yyyy. MM. dd.")
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy. MM. dd. HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     @Column(nullable = false)
-    private Date departureDate;
-    
-    @JsonFormat(pattern = "HH:mm")
-    @Temporal(TemporalType.TIME)
-    @NotNull
-    @Column(nullable = false)
-    private Date departureTime;
+    private Date departureDateTime;
 }

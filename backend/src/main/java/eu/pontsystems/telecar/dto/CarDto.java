@@ -22,9 +22,7 @@ public class CarDto {
 	private PersonDto driver;
 	private String routeDescription;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy. MM. dd.")
-    private Date departureDate;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
-    private Date departureTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy. MM. dd. HH:mm")
+    private Date departureDateTime;
+
 }
