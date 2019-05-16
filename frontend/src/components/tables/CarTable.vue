@@ -3,7 +3,7 @@
 
     <!-- table -->
     <b-card-group deck>
-      <b-card class="col-md-3 text-center" v-for="(car, index) in cars" :key="index">
+      <b-card class="col-md-3 text-center" v-for="(car, index) in cars.slice(start, end)" :key="index">
         <b-card-text class="driver-text"><b>{{car.driver.fullName + ' útja'}}</b></b-card-text>
         <b-card-text class="departure-time-text">{{car.departureDateTime }}</b-card-text>
         <b-card-text class="route-text">{{formatRoutes(car.routes)}}</b-card-text>
@@ -25,6 +25,14 @@
         </b-card-body>
       </b-card>
     </b-card-group>
+
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="this.cars.length"
+      :per-page="perPage"
+      ></b-pagination>
+
+    <p class="mt-3">Current Page: {{ currentPage }}</p>
   </div>
 </template>
 
@@ -39,6 +47,21 @@ export default {
     },
     serverEndpoint: String
   },
+  data () {
+    return {
+      cars: {},
+      currentPage: 1,
+      perPage: 6
+    }
+  },
+  computed: {
+    start () {
+      return parseInt((this.currentPage - 1) * this.perPage)
+    },
+    end () {
+      return parseInt(this.currentPage * this.perPage)
+    }
+  },
   methods: {
     formatRoutes: function(routes) {
       let routeString = ''
@@ -52,13 +75,9 @@ export default {
       this.axios.get('/cars')
         .then(function (response){
           this.cars = response.data
+          // this.cars = this.cars.splice(0, 5)
           console.log(this.cars)
         }.bind(this))
-    }
-  },
-  data () {
-    return {
-      cars: {}
     }
   }
 }

@@ -94,13 +94,14 @@ export default {
     },
     save: function () {
       if (this.validateStations()) {
+        let formattedTime = this.departureTime.split(':')[0]+':'+this.departureTime.split(':')[1]
         this.axios.post('/cars/' + this.$store.getters.user.id + '/add', {
           driverId: this.$store.getters.user.id,
           maxPlaces: this.maxPlaces,
           routes: this.stations.map(function (x) { return x.value }),
           routeDescription: this.description,
           isElectric: this.isElectric,
-          departureDateTime: this.departureDate + ' ' + this.departureTime
+          departureDateTime: this.departureDate + ' ' + formattedTime
         })
           .then(function (response){
             console.log(response)
