@@ -3,7 +3,7 @@
 
     <!-- table -->
     <b-card-group deck>
-      <b-card class="col-md-3 text-center" v-for="(car, index) in cars.slice(start, end)" :key="index">
+      <b-card class="col-md-3 text-center" v-for="(car, index) in carsOnPage" :key="index">
         <b-card-text class="driver-text"><b>{{car.driver.fullName + ' útja'}}</b></b-card-text>
         <b-card-text class="departure-time-text">{{car.departureDateTime }}</b-card-text>
         <b-card-text class="route-text">{{formatRoutes(car.routes)}}</b-card-text>
@@ -60,6 +60,15 @@ export default {
     },
     end () {
       return parseInt(this.currentPage * this.perPage)
+    },
+    carsOnPage() {
+      let actualCars = []
+      for (let i = this.start; i < this.end; i++) {
+        if (this.cars[i]) {
+          actualCars.push(this.cars[i])
+        }
+      }
+      return actualCars
     }
   },
   methods: {
