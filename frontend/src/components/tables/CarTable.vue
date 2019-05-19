@@ -1,57 +1,49 @@
 <template>
-  <div class="base-table">
-
+  <div class="content">
     <!-- table -->
-    <b-card-group deck>
-      <b-card class="col-md-3 text-center" v-for="(car, index) in carsOnPage" :key="index">
-        <b-card-text class="driver-text"><b>{{car.driver.fullName + ' útja'}}</b></b-card-text>
-        <b-card-text class="departure-time-text">{{car.departureDateTime }}</b-card-text>
-        <b-card-text class="route-text">{{formatRoutes(car.routes)}}</b-card-text>
-        <b-card-body>
-          <div v-for="placeIndex in car.maxPlaces" :key="placeIndex">
-            <b-row v-if="(placeIndex - 1) % maxIconsPerRow === 0">
-              <b-col v-for="colIndex in maxIconsPerRow" :key="colIndex">
-                <div v-if="((placeIndex - 1) + (colIndex - 1)) < car.maxPlaces">
-                  <div class="btn btn-warn" v-if="car.passengers[(placeIndex - 1 ) + (colIndex - 1)]">
-                    <i class="fa fa-times"></i>
-                  </div>
-                  <div class="btn btn-success" v-else="">
-                    <i class="fa fa-check"></i>
-                  </div>
-                </div>
-              </b-col>
-            </b-row>
-          </div>
-        </b-card-body>
-      </b-card>
-    </b-card-group>
+    <table class="table">
+      <template>
+        <tr v-for="rowIndex in maxRowsInTable" :key="rowIndex">
+          <td v-for="colIndex in maxColsInTableRow" :key="colIndex">
 
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="this.cars.length"
-      :per-page="perPage"
-      ></b-pagination>
+            <!-- car card -->
+            <car-card :car="getSingleCar(rowIndex, colIndex)" :maxIconsPerRow="4"></car-card>
+          </td>
+        </tr>
+      </template>
+    </table>
 
-    <p class="mt-3">Current Page: {{ currentPage }}</p>
+    <b-row align-h="end">
+      <b-pagination align-h="end"
+        v-model="currentPage"
+        :total-rows="this.cars.length"
+        :per-page="perPage"
+        ></b-pagination>
+    </b-row>
+    <!-- <p class="mt-3">Current Page: {{ currentPage }}</p> -->
   </div>
 </template>
 
 <script>
-
+import CarCard from '@/components/cards/CarCard.vue'
 export default {
   name: 'CarTable',
+  components: {
+    CarCard
+  },
   props: {
-    maxIconsPerRow: {
-      default: 4,
-      type: Number
-    },
     serverEndpoint: String
   },
   data () {
     return {
       cars: {},
+      car: null,
       currentPage: 1,
-      perPage: 6
+      perPage: 6,
+      maxRowsInTable: 2,
+      maxColsInTableRow: 3,
+      rowTableIndices: [],
+      colTableIndices: []
     }
   },
   computed: {
@@ -72,19 +64,13 @@ export default {
     }
   },
   methods: {
-    formatRoutes: function(routes) {
-      let routeString = ''
-      for(let i = 0; i < routes.length - 1; i++) {
-        routeString += routes[i].name + ' - '
-      }
-      routeString += routes[routes.length - 1].name
-      return routeString
+    getSingleCar: function (rowIndex, colIndex) {
+      return this.carsOnPage[(rowIndex - 1)*this.maxColsInTableRow + (colIndex - 1)]
     },
     getCars: function () {
       this.axios.get('/cars')
         .then(function (response){
           this.cars = response.data
-          // this.cars = this.cars.splice(0, 5)
           console.log(this.cars)
         }.bind(this))
     }
@@ -93,32 +79,11 @@ export default {
 </script>
 
 <style scoped>
-/* Style buttons */
-.btn-warn {
-  background-color: red; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-}
-
-.btn-success {
-  background-color: green; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
-}
-.driver-text {
-  margin-bottom: 0;
-}
-.departure-time-text {
-  margin-bottom: 0;
-  font-size: 15px;
-}
-.route-text {
-  font-size: 15px;
-}
+  td {
+    border: 0 !important;
+  }
+  .table {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 </style>

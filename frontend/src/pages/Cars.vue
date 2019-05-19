@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <car-table ref="cartable"></car-table>
   </div>
 </template>

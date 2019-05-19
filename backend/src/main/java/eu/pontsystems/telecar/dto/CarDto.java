@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class CarDto {
 	
 	private Long driverId;
+	private Long id;
 	private int maxPlaces;
 	private List<PersonDto> passengers;
 	private List<RouteDto> routes;
